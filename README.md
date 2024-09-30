@@ -2,7 +2,9 @@
 
 A collection management system for academic institution and related parties.
 
-The system are designed to be hosted in a PaaS mode (single entity usage in contrast to multi-tenancy mode)
+The system are designed to be hosted in a PaaS mode (single entity usage in contrast to multi-tenancy mode) in order to enforce strict data segregation requirement between fund collecting agencies.
+
+It provides robust customization by configuration by default without the need to extensive customization code requirement which quickens the time to production.
 
 ## Prerequisites
 

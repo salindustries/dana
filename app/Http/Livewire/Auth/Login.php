@@ -18,8 +18,7 @@ class Login extends Component
 
     public function render()
     {
-        $page_title = 'Login';
-        return view('livewire.auth.login', compact('page_title'));
+        return view('livewire.auth.login');
     }
 
     public function mount()
