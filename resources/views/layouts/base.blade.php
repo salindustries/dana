@@ -25,8 +25,9 @@
   </title>
   </title>
 
-  <meta name="keywords" content="sallehuddin industries, paas, fintech, payment service, school payment" />
-  <meta name="description" content="Payment collection service for academia and its related parties/entities" />
+  <meta name="keywords" content="sallehuddin industries, paas, fintech, payment service, non-profit payment" />
+  <meta name="description"
+    content="Payment collection management platform for non-profit organizations and its related parties/entities" />
   <meta name="author" content="Sallehuddin Abdul Latif" />
   <meta name="og:title" content="{{ config('custom.organization_name') }}" />
   <meta name="og:site_name"

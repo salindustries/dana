@@ -27,13 +27,10 @@
         <div class="card-body">
           <h6>You can login with these 3 user types:</h6>
           <ol>
-            <li class="text-sm font-weight-normal">Username <strong>admin@material.com</strong> and Password
+            <li class="text-sm font-weight-normal">Username <strong>admin@sallehuddin.com</strong> and Password
               <strong>secret</strong>
             </li>
-            <li class="text-sm font-weight-normal">Username <strong>creator@material.com</strong> and Password
-              <strong>secret</strong>
-            </li>
-            <li class="text-sm font-weight-normal"> Username <strong>member@material.com</strong> and Password
+            <li class="text-sm font-weight-normal">Username <strong>auditor@sallehuddin.com</strong> and Password
               <strong>secret</strong>
             </li>
           </ol>

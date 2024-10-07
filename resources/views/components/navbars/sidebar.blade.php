@@ -4,9 +4,9 @@
   <div class="sidenav-header">
     <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
       aria-hidden="true" id="iconSidenav"></i>
-    <a class="navbar-brand m-0 p-4 d-flex align-items-center text-wrap" href="{{ route('analytics') }}">
-      <img src="{{ asset('assets') }}/img/infaqsio.png" class="navbar-brand-img h-100" alt="main_logo">
-      <span class="ms-2 font-weight-bold text-white">DANA by TradaX</span>
+    <a class="navbar-brand m-0 p-4 d-flex align-items-center text-wrap" href="{{ route('dashboard') }}">
+      <img src="{{ asset('assets') }}/img/dana.png" class="navbar-brand-img h-100" alt="main_logo">
+      <span class="ms-2 font-weight-bold text-white">DANA Management</span>
     </a>
   </div>
   <hr class="horizontal light mt-0 mb-2">
@@ -25,13 +25,7 @@
         <div class="collapse" id="ProfileNav" style="">
           <ul class="nav ">
             <li class="nav-item">
-              <a class="nav-link text-white" href="{{ route('overview') }}">
-                <span class="sidenav-mini-icon"> MP </span>
-                <span class="sidenav-normal  ms-3  ps-1"> My Profile </span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white " href="{{ route('settings') }}">
+              <a class="nav-link text-white " href="{{ route('account-settings') }}">
                 <span class="sidenav-mini-icon"> S </span>
                 <span class="sidenav-normal  ms-3  ps-1"> Settings </span>
               </a>
@@ -43,6 +37,33 @@
         </div>
       </li>
       <hr class="horizontal light mt-0">
+      <li class="nav-item">
+        <a data-bs-toggle="collapse" href="#collections"
+          class="nav-link text-white {{ strpos(Request::route()->uri(), 'collection') === false ? '' : 'active' }} "
+          aria-controls="collections" role="button" aria-expanded="false">
+          <i class="material-icons-round opacity-10">cases</i>
+          <span class="nav-link-text ms-2 ps-1">Collections</span>
+        </a>
+        <div class="collapse {{ strpos(Request::route()->uri(), 'collection') === false ? '' : 'show' }} "
+          id="collections">
+          <ul class="nav ">
+            <li class="nav-item {{ Route::currentRouteName() == 'collection-list' ? 'active' : '' }}  ">
+              <a class="nav-link text-white {{ Route::currentRouteName() == 'collection-list' ? 'active' : '' }} "
+                href="{{ route('collection-list') }}">
+                <span class="sidenav-mini-icon"> L </span>
+                <span class="sidenav-normal  ms-2  ps-1"> List </span>
+              </a>
+            </li>
+            <li class="nav-item {{ Route::currentRouteName() == 'collection-transactions' ? 'active' : '' }}  ">
+              <a class="nav-link text-white {{ Route::currentRouteName() == 'collection-transactions' ? 'active' : '' }} "
+                href="{{ route('collection-transactions') }}">
+                <span class="sidenav-mini-icon"> T </span>
+                <span class="sidenav-normal  ms-2  ps-1"> Transaction </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
       <li class="nav-item">
         <a data-bs-toggle="collapse" href="#dashboardsExamples"
           class="nav-link text-white {{ strpos(Request::route()->uri(), 'dashboard') === false ? '' : 'active' }} "
@@ -684,226 +705,22 @@
           </ul>
         </div>
       </li>
+      @can('create', App\Models\User::class)
+        <li class="nav-item">
+          <hr class="horizontal light" />
+          <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder text-white">Back Office</h6>
+        </li>
+      @endcan
       <li class="nav-item">
         <hr class="horizontal light" />
         <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder text-white">DOCS</h6>
-      </li>
-      <li class="nav-item">
-        <a data-bs-toggle="collapse" href="#basicExamples" class="nav-link text-white "
-          aria-controls="basicExamples" role="button" aria-expanded="false">
-          <i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">upcoming</i>
-          <span class="nav-link-text ms-2 ps-1">Basic</span>
-        </a>
-        <div class="collapse " id="basicExamples">
-          <ul class="nav ">
-            <li class="nav-item ">
-              <a class="nav-link text-white " data-bs-toggle="collapse" aria-expanded="false"
-                href="#gettingStartedExample">
-                <span class="sidenav-mini-icon"> G </span>
-                <span class="sidenav-normal  ms-2  ps-1"> Getting Started <b class="caret"></b></span>
-              </a>
-              <div class="collapse " id="gettingStartedExample">
-                <ul class="nav nav-sm flex-column">
-                  <li class="nav-item">
-                    <a class="nav-link text-white " href="../../documentation/getting-started/installation.html"
-                      target="_blank">
-                      <span class="sidenav-mini-icon"> Q </span>
-                      <span class="sidenav-normal  ms-2  ps-1"> Quick Start </span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-white " href="../../documentation/getting-started/license.html"
-                      target="_blank">
-                      <span class="sidenav-mini-icon"> L </span>
-                      <span class="sidenav-normal  ms-2  ps-1"> License </span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-white " href="../../documentation/getting-started/overview.html"
-                      target="_blank">
-                      <span class="sidenav-mini-icon"> C </span>
-                      <span class="sidenav-normal  ms-2  ps-1"> Contents </span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-white " href="../../documentation/getting-started/build-tools.html"
-                      target="_blank">
-                      <span class="sidenav-mini-icon"> B </span>
-                      <span class="sidenav-normal  ms-2  ps-1"> Build Tools </span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link text-white " data-bs-toggle="collapse" aria-expanded="false"
-                href="#foundationExample">
-                <span class="sidenav-mini-icon"> F </span>
-                <span class="sidenav-normal  ms-2  ps-1"> Foundation <b class="caret"></b></span>
-              </a>
-              <div class="collapse " id="foundationExample">
-                <ul class="nav nav-sm flex-column">
-                  <li class="nav-item">
-                    <a class="nav-link text-white " href="../../documentation/foundation/colors.html"
-                      target="_blank">
-                      <span class="sidenav-mini-icon"> C </span>
-                      <span class="sidenav-normal  ms-2  ps-1"> Colors </span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-white " href="../../documentation/foundation/grid.html" target="_blank">
-                      <span class="sidenav-mini-icon"> G </span>
-                      <span class="sidenav-normal  ms-2  ps-1"> Grid </span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-white " href="../../documentation/foundation/typography.html"
-                      target="_blank">
-                      <span class="sidenav-mini-icon"> T </span>
-                      <span class="sidenav-normal  ms-2  ps-1"> Typography </span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-white " href="../../documentation/foundation/icons.html" target="_blank">
-                      <span class="sidenav-mini-icon"> I </span>
-                      <span class="sidenav-normal  ms-2  ps-1"> Icons </span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a data-bs-toggle="collapse" href="#componentsExamples" class="nav-link text-white "
-          aria-controls="componentsExamples" role="button" aria-expanded="false">
-          <i class="material-icons-round {% if page.brand == 'RTL' %}ms-2{% else %} me-2{% endif %}">view_in_ar</i>
-          <span class="nav-link-text ms-2 ps-1">Components</span>
-        </a>
-        <div class="collapse " id="componentsExamples">
-          <ul class="nav ">
-            <li class="nav-item ">
-              <a class="nav-link text-white " href="../../documentation/components/alerts.html" target="_blank">
-                <span class="sidenav-mini-icon"> A </span>
-                <span class="sidenav-normal  ms-2  ps-1"> Alerts </span>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link text-white " href="../../documentation/components/badge.html" target="_blank">
-                <span class="sidenav-mini-icon"> B </span>
-                <span class="sidenav-normal  ms-2  ps-1"> Badge </span>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link text-white " href="../../documentation/components/buttons.html" target="_blank">
-                <span class="sidenav-mini-icon"> B </span>
-                <span class="sidenav-normal  ms-2  ps-1"> Buttons </span>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link text-white " href="../../documentation/components/cards.html" target="_blank">
-                <span class="sidenav-mini-icon"> C </span>
-                <span class="sidenav-normal  ms-2  ps-1"> Card </span>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link text-white " href="../../documentation/components/carousel.html" target="_blank">
-                <span class="sidenav-mini-icon"> C </span>
-                <span class="sidenav-normal  ms-2  ps-1"> Carousel </span>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link text-white " href="../../documentation/components/collapse.html" target="_blank">
-                <span class="sidenav-mini-icon"> C </span>
-                <span class="sidenav-normal  ms-2  ps-1"> Collapse </span>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link text-white " href="../../documentation/components/dropdowns.html" target="_blank">
-                <span class="sidenav-mini-icon"> D </span>
-                <span class="sidenav-normal  ms-2  ps-1"> Dropdowns </span>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link text-white " href="../../documentation/components/forms.html" target="_blank">
-                <span class="sidenav-mini-icon"> F </span>
-                <span class="sidenav-normal  ms-2  ps-1"> Forms </span>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link text-white " href="../../documentation/components/modal.html" target="_blank">
-                <span class="sidenav-mini-icon"> M </span>
-                <span class="sidenav-normal  ms-2  ps-1"> Modal </span>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link text-white " href="../../documentation/components/navs.html" target="_blank">
-                <span class="sidenav-mini-icon"> N </span>
-                <span class="sidenav-normal  ms-2  ps-1"> Navs </span>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link text-white " href="../../documentation/components/navbar.html" target="_blank">
-                <span class="sidenav-mini-icon"> N </span>
-                <span class="sidenav-normal  ms-2  ps-1"> Navbar </span>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link text-white " href="../../documentation/components/pagination.html" target="_blank">
-                <span class="sidenav-mini-icon"> P </span>
-                <span class="sidenav-normal  ms-2  ps-1"> Pagination </span>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link text-white " href="../../documentation/components/popovers.html" target="_blank">
-                <span class="sidenav-mini-icon"> P </span>
-                <span class="sidenav-normal  ms-2  ps-1"> Popovers </span>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link text-white " href="../../documentation/components/progress.html" target="_blank">
-                <span class="sidenav-mini-icon"> P </span>
-                <span class="sidenav-normal  ms-2  ps-1"> Progress </span>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link text-white " href="../../documentation/components/spinners.html" target="_blank">
-                <span class="sidenav-mini-icon"> S </span>
-                <span class="sidenav-normal  ms-2  ps-1"> Spinners </span>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link text-white " href="../../documentation/components/tables.html" target="_blank">
-                <span class="sidenav-mini-icon"> T </span>
-                <span class="sidenav-normal  ms-2  ps-1"> Tables </span>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link text-white " href="../../documentation/components/tooltips.html" target="_blank">
-                <span class="sidenav-mini-icon"> T </span>
-                <span class="sidenav-normal  ms-2  ps-1"> Tooltips </span>
-              </a>
-            </li>
-          </ul>
-        </div>
       </li>
     </ul>
   </div>
   <div class="sidenav-footer w-100 bottom-0 mt-2 ">
     <div class="mx-3">
-      <a class="btn bg-gradient-primary w-100"
-        href="https://www.creative-tim.com/product/material-dashboard-pro-laravel-livewire" target="_blank"
-        type="button">Buy Now</a>
-    </div>
-    <div class="mx-3">
-      <a class="btn bg-gradient-primary w-100" href="../../documentation/getting-started/installation.html"
-        target="_blank">View documentation</a>
-    </div>
-    <div class="mx-3">
-      <a class="btn bg-gradient-primary w-100"
-        href="https://www.creative-tim.com/product/material-dashboard-laravel-livewire" target="_blank">Get Free
-        Version</a>
+      <a class="btn bg-gradient-primary w-100" target="_blank" href="../../docs/index.html" target="_blank">View
+        documentation</a>
     </div>
   </div>
 </aside>

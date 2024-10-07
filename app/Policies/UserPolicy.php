@@ -17,7 +17,7 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->isAdmin();
+        return $user->isAdmin() || $user->isAuditor() || $user->isOrgAdmin() || $user->isOrgAuditor();
     }
 
     /**
@@ -29,7 +29,7 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        //
+        return $user->isAdmin() || $user->isAuditor() || $user->isOrgAdmin() || $user->isOrgAuditor();
     }
 
     /**
@@ -40,7 +40,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        return $user->isAdmin();
+        return $user->isAdmin() || $user->isOrgAdmin();
     }
 
     /**
@@ -52,7 +52,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        return $user->isAdmin();
+        return $user->isAdmin() || $user->isOrgAdmin();
     }
 
     /**
@@ -64,7 +64,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
-        return $user->isAdmin() && $user->id != $model->id;
+        return ($user->isAdmin() || $user->isOrgAdmin()) && $user->id != $model->id;
     }
 
     /**
@@ -76,7 +76,7 @@ class UserPolicy
      */
     public function restore(User $user, User $model)
     {
-        //
+        return ($user->isAdmin() || $user->isOrgAdmin()) && $user->id != $model->id;
     }
 
     /**
@@ -88,22 +88,14 @@ class UserPolicy
      */
     public function forceDelete(User $user, User $model)
     {
-        //
-    }
-
-        /**
-     * Determine whether the authenticate user can manage other users.
-     */
-    public function manageUsers(User $user)
-    {
         return $user->isAdmin();
     }
 
     /**
-     * Determine whether the authenticate user can manage items and other related entities(tags, categories).
+     * Determine whether the authenticate user can manage other users.
      */
-    public function manageItems(User $user)
+    public function manageUsers(User $user)
     {
-        return $user->isAdmin() || $user->isCreator();
+        return $user->isAdmin() || $user->isOrgAdmin();
     }
 }

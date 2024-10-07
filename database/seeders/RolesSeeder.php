@@ -15,22 +15,43 @@ class RolesSeeder extends Seeder
     public function run()
     {
         DB::table('roles')->insert([
-            'name' => 'Admin',
-            'description' => 'This is the administration role',
+            'name' => 'SuperAdmin',
+            'description' => 'System Administrator',
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
         DB::table('roles')->insert([
-            'name' => 'Creator',
-            'description' => 'This is the creator role',
+            'name' => 'Auditor',
+            'description' => 'System Auditor',
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
         DB::table('roles')->insert([
-            'name' => 'Member',
-            'description' => 'This is the member role',
+            'name' => 'OrgAdmin',
+            'description' => 'Organization Administrator',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        DB::table('roles')->insert([
+            'name' => 'OrgAuditor',
+            'description' => 'Organization Auditor',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        DB::table('roles')->insert([
+            'name' => 'BusinessManager',
+            'description' => 'Business Manager',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        DB::table('roles')->insert([
+            'name' => 'BusinessExec',
+            'description' => 'Business Executive',
             'created_at' => now(),
             'updated_at' => now()
         ]);

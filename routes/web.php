@@ -75,6 +75,9 @@ use App\Http\Livewire\LaravelExamples\Tag\Index as TagIndex;
 use App\Http\Livewire\LaravelExamples\UserManagement\Create as UserManagementCreate;
 use App\Http\Livewire\LaravelExamples\UserManagement\Edit as UserManagementEdit;
 use App\Http\Livewire\LaravelExamples\UserManagement\Index as UserManagementIndex;
+use App\Http\Livewire\Account\Settings as AccountSettings;
+use App\Http\Livewire\Collection\Index as CollectionIndex;
+use App\Http\Livewire\Collection\Transaction as TransactionIndex;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -105,6 +108,15 @@ Route::get('dashboard/analytics', Index::class)->middleware('auth')->name('analy
 
 Route::group(['middleware' => 'auth'], function () {
 
+    Route::get('dashboard', Index::class)->name('dashboard');
+
+    // Collection
+    Route::get('collection', CollectionIndex::class)->name('collection-list');
+    Route::get('collection/transactions', TransactionIndex::class)->name('collection-transactions');
+
+    // Account
+    Route::get('account/settings', AccountSettings::class)->name('account-settings');
+
     Route::get('laravel-examples/items', ItemsIndex::class)->name('item-management');
     Route::get('laravel-examples/items/{id}', ItemsEdit::class)->name('edit-item');
     Route::get('laravel-examples/new-item', ItemsCreate::class)->name('add-item');
@@ -112,7 +124,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('laravel-examples/tag', TagIndex::class)->name('tag-management');
     Route::get('laravel-examples/tag/{id}', TagEdit::class)->name('edit-tag');
     Route::get('laravel-examples/new-tag', TagCreate::class)->name('add-tag');
-    
+
     Route::get('laravel-examples/category', CategoryIndex::class)->name('category-management');
     Route::get('laravel-examples/category/{id}', CategoryEdit::class)->name('edit-category');
     Route::get('laravel-examples/new-category', CategoryCreate::class)->name('add-category');
@@ -127,38 +139,38 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('laravel-examples/user-profile', ProfileEdit::class)->name('user-profile');
 
-	Route::get('pages/charts', Charts::class)->name('charts');
-	Route::get('pages/notifications', Notifications::class)->name('notifications');
-	Route::get('pages/pricing-page', PricingPage::class)->name('pricing-page');
+    Route::get('pages/charts', Charts::class)->name('charts');
+    Route::get('pages/notifications', Notifications::class)->name('notifications');
+    Route::get('pages/pricing-page', PricingPage::class)->name('pricing-page');
     Route::get('pages/rtl', Rtl::class)->name('rtl');
-	Route::get('pages/sweet-alerts', SweetAlerts::class)->name('sweet-alerts');
-	Route::get('pages/widgets', Widgets::class)->name('widgets');
-	Route::get('pages/vr/vr-default', VrDefault::class)->name('vr-default');
-	Route::get('pages/vr/vr-info', VrInfo::class)->name('vr-info');
-	Route::get('pages/users/new-user', NewUser::class)->name('new-user');
+    Route::get('pages/sweet-alerts', SweetAlerts::class)->name('sweet-alerts');
+    Route::get('pages/widgets', Widgets::class)->name('widgets');
+    Route::get('pages/vr/vr-default', VrDefault::class)->name('vr-default');
+    Route::get('pages/vr/vr-info', VrInfo::class)->name('vr-info');
+    Route::get('pages/users/new-user', NewUser::class)->name('new-user');
     Route::get('pages/users/reports', Reports::class)->name('reports');
     Route::get('pages/projects/general', General::class)->name('general');
-	Route::get('pages/projects/new-project', NewProject::class)->name('new-project');
-	Route::get('pages/projects/timeline', Timeline::class)->name('timeline');
-	Route::get('pages/profile/overview', Overview::class)->name('overview');
-	Route::get('pages/profile/projects', Projects::class)->name('projects');
-	Route::get('pages/account/billing', Billing::class)->name('billing');
+    Route::get('pages/projects/new-project', NewProject::class)->name('new-project');
+    Route::get('pages/projects/timeline', Timeline::class)->name('timeline');
+    Route::get('pages/profile/overview', Overview::class)->name('overview');
+    Route::get('pages/profile/projects', Projects::class)->name('projects');
+    Route::get('pages/account/billing', Billing::class)->name('billing');
     Route::get('pages/account/invoice', Invoice::class)->name('invoice');
     Route::get('pages/account/security', Security::class)->name('security');
-	Route::get('pages/account/settings', Settings::class)->name('settings');
+    Route::get('pages/account/settings', Settings::class)->name('settings');
 
-	Route::get('ecommerce/referral', Referral::class)->name('referral');
-	Route::get('ecommerce/orders/details', Details::class)->name('order-details');
-	Route::get('ecommerce/orders/list', OrderList::class)->name('order-list');
-	Route::get('ecommerce/products/edit-product', EditProduct::class)->name('edit-product');
+    Route::get('ecommerce/referral', Referral::class)->name('referral');
+    Route::get('ecommerce/orders/details', Details::class)->name('order-details');
+    Route::get('ecommerce/orders/list', OrderList::class)->name('order-list');
+    Route::get('ecommerce/products/edit-product', EditProduct::class)->name('edit-product');
     Route::get('ecommerce/products/new-product', NewProduct::class)->name('new-product');
     Route::get('ecommerce/products/product-page', ProductPage::class)->name('product-page');
     Route::get('ecommerce/products/products-list', ProductsList::class)->name('products-list');
 
-	Route::get('dashboard/automotive', Automotive::class)->name('automotive');
-	Route::get('dashboard/discover', Discover::class)->name('discover');
-	Route::get('dashboard/sales', Sales::class)->name('sales');
-	Route::get('dashboard/smart-home', SmartHome::class)->name('smart-home');
+    Route::get('dashboard/automotive', Automotive::class)->name('automotive');
+    Route::get('dashboard/discover', Discover::class)->name('discover');
+    Route::get('dashboard/sales', Sales::class)->name('sales');
+    Route::get('dashboard/smart-home', SmartHome::class)->name('smart-home');
 
     Route::get('basic-lock', Basic::class)->name('basic-lock');
     Route::get('cover-lock', Cover::class)->name('cover-lock');

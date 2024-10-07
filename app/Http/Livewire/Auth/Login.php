@@ -23,7 +23,7 @@ class Login extends Component
 
     public function mount()
     {
-        $this->fill(['email' => 'admin@material.com', 'password' => 'secret']);
+        $this->fill(['email' => 'technical@sallehuddin.com', 'password' => 'secret']);
     }
 
     public function store()
@@ -38,6 +38,6 @@ class Login extends Component
 
         session()->regenerate();
 
-        return redirect('laravel-examples/user-profile');
+        return redirect('account/settings');
     }
 }
